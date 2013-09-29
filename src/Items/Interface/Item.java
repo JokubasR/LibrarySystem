@@ -1,11 +1,11 @@
-package Items.Abstract;
+package Items.Interface;
 
 /**
  * User: Jokubas
  * Date: 13.9.23
  * Time: 17.25
  */
-public abstract class Item {
+public interface Item {
 
     /**
      * Updates row with given data
@@ -14,7 +14,7 @@ public abstract class Item {
      * @param rowId row id witch will be updated
      * @return row id
      */
-    public abstract int saveRow(String[] data, String table, int rowId);
+    public int saveRow(String[] data, String table, int rowId);
 
     /**
      * Inserts row with given data
@@ -22,5 +22,5 @@ public abstract class Item {
      * @param table table name
      * @return row id
      */
-    public abstract int saveRow(String[] data, String table);
+    public int saveRow(String[] data, String table);
 }

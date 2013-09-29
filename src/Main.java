@@ -1,5 +1,6 @@
 import Controllers.*;
 import Models.Resources.*;
+import Models.Resources.User;
 
 import java.io.Console;
 
@@ -14,8 +15,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
         Console console = System.console();
+
         /*
             Controllers initialization
          */
@@ -42,24 +43,29 @@ public class Main {
             case '1':
                 System.out.println("Firstname: ");
                 String userFirstname = console.readLine();
-                System.out.println("\nLasttname: ");
+                System.out.println("Lasttname: ");
                 String userLastname = console.readLine();
-                System.out.println("\nPassword: ");
+                System.out.println("Password: ");
                 String userPassword = console.readLine();
-                System.out.println("Choose your role:\n1. User\n2.Worker\n");
+                System.out.println("Choose your role:\n1. User\n2. Worker\n");
                 String userRole = console.readLine();
 
                 Role role = Role.USER;
-                if (userRole == "2") {
+                if (userRole.equals("2")) {
                     role = Role.WORKER;
                 }
 
+                int userId;
                 if (userPassword.isEmpty()) {
-                    userController.register(userFirstname, userLastname, role);
+                    userId = userController.register(userFirstname, userLastname, role);
                 } else {
-                    userController.register(userFirstname, userLastname, userPassword, role);
+                    userId = userController.register(userFirstname, userLastname, userPassword, role);
                 }
 
+                System.out.println(String.format("User successfully registered.\nUserID: %s", userId));
+
+                User user = userController.getUser();
+                System.out.println(user.toString());
                 break;
         }
 	}

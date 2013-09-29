@@ -49,4 +49,8 @@ public class User{
 
         return userId;
     }
+
+    public Models.Resources.User getUser() {
+        return this._userModel.getUser();
+    }
 }

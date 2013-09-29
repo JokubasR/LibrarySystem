@@ -1,5 +1,5 @@
 package Items.Items;
-import Items.Abstract.Item;
+import Items.Interface.Item;
 import java.lang.reflect.Field;
 
 /**
@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
  * Date: 13.9.23
  * Time: 17.36
  */
-public class DbItem extends Item  {
+public class DbItem implements Item  {
 
     /**
      * Database table name
@@ -62,6 +62,9 @@ public class DbItem extends Item  {
         return this.saveRow(data, this._table);
     }
 
+    /**
+     * Probably I ain't gonna use it
+     */
     public void toArray() {
         Field[] fields = this.getClass().getDeclaredFields();
 

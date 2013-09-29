@@ -32,6 +32,10 @@ public class User extends DbItem {
         this._role      = role;
     }
 
+    public User(String firstname, String lastname, String password) {
+        this(firstname, lastname, password, Role.USER);
+    }
+
     public String getFirstname() {
         return this._firstname;
     }
@@ -66,6 +70,6 @@ public class User extends DbItem {
 
     public String toString()
     {
-        return String.format("Firstname: {0} Lastname: {1} Role: {2}", this._firstname, this._lastname, this._role);
+        return String.format("Firstname: %s\nLastname: %s\nPassword: %s\nRole: %s\n", this._firstname, this._lastname, this._password, this._role);
     }
 }
