@@ -15,26 +15,52 @@ public class DbItem extends Item  {
     private String _table;
 
     /**
-     * Initialize DbItem class
-     * @param table database table name
+     * DbItem constructor
+     * @param name database table name
      */
-    public void Init(String table) {
-        this._table = table;
+    public DbItem(String name) {
+        this._table = name;
     }
 
     /**
-     * Saves given data to database
+     * Sets database table name
+     * @param name database table name
+     */
+    public void setTable(String name) {
+        this._table = name;
+    }
+
+    /**
+     * Updates given data to database
      * @param data  associative array. Where index defines collumn name.
      * @param table database table name
      * @param rowId if given, then this row will be updated
-     * @return TRUE - if everything went fine, FALSE - if something got fucked up
+     * @return row id
      */
-    public boolean saveRow(String[] data, String table, int rowId) {
+    public int saveRow(String[] data, String table, int rowId) {
         // TODO Implement saving to row method here
 
-        return true;
+        return 0;
     }
 
+    /**
+     * Inserts given data to database
+     * @param data  associative array. Where index defines collumn name.
+     * @param table database table name
+     * @return row id
+     */
+    public int saveRow(String[] data, String table) {
+        return this.saveRow(data, table, 0);
+    }
+
+    /**
+     * Inserts given data to database
+     * @param data  associative array. Where index defines collumn name.
+     * @return row id
+     */
+    public int saveRow(String[] data) {
+        return this.saveRow(data, this._table);
+    }
 
     public void toArray() {
         Field[] fields = this.getClass().getDeclaredFields();

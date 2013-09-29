@@ -7,5 +7,20 @@ package Items.Abstract;
  */
 public abstract class Item {
 
-    public abstract boolean saveRow(String[] data, String table, int rowId);
+    /**
+     * Updates row with given data
+     * @param data  data array
+     * @param table table name
+     * @param rowId row id witch will be updated
+     * @return row id
+     */
+    public abstract int saveRow(String[] data, String table, int rowId);
+
+    /**
+     * Inserts row with given data
+     * @param data  data array
+     * @param table table name
+     * @return row id
+     */
+    public abstract int saveRow(String[] data, String table);
 }

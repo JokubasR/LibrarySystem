@@ -12,20 +12,24 @@ public class User extends DbItem {
     /**
      * Database table name
      */
-    protected String _name = "User";
+    protected static String _name = "User";
 
     private String  _firstname;
     private String  _lastname;
     private String  _password;
     private Role   _role;
 
+    public User(){
+        super(_name);
+    }
+
     public User(String firstname, String lastname, String password, Role role) {
+        super(_name);
+
         this._firstname = firstname;
         this._lastname  = lastname;
         this._password  = password;
         this._role      = role;
-
-        this.Init(this._name);
     }
 
     public String getFirstname() {
@@ -44,11 +48,24 @@ public class User extends DbItem {
         this._lastname = lastname;
     }
 
-    public String setPassword(String password) {
+    public void setPassword(String password) {
         this._password = password;
     }
 
     public Boolean validatePassword(String password) {
         return password.equals(this._password);
+    }
+
+    public void setRole(Role role) {
+        this._role = role;
+    }
+
+    public Role getRole() {
+        return this._role;
+    }
+
+    public String toString()
+    {
+        return String.format("Firstname: {0} Lastname: {1} Role: {2}", this._firstname, this._lastname, this._role);
     }
 }
