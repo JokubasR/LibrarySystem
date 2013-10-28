@@ -8,18 +8,18 @@ import Models.*;
  * Date: 13.9.29
  * Time: 13.49
  */
-public class User{
+public class UserController{
 
     /**
      * User model object
      */
-    protected Models.User _userModel = null;
+    protected Models.UserModel _userModel = null;
 
     /**
      * Intializes models
      */
-    public User() {
-        this._userModel = new Models.User();
+    public UserController() {
+        this._userModel = new Models.UserModel();
     }
 
     /**

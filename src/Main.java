@@ -20,7 +20,7 @@ public class Main {
         /*
             Controllers initialization
          */
-        Controllers.User userController = new Controllers.User();
+        Controllers.UserController userController = new Controllers.UserController();
 
 
         /*

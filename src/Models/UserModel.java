@@ -9,7 +9,7 @@ import java.util.Random;
  * Time: 16.55
  *
  */
-public class User {
+public class UserModel {
 
     /**
      * User resource
@@ -22,7 +22,7 @@ public class User {
     /**
      * Initializes resources
      */
-    public User() {
+    public UserModel() {
         this._userResource = new Models.Resources.User();
     }
 
