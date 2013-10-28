@@ -1,5 +1,6 @@
 package Items.Items;
-import Items.Interface.Item;
+import Items.Interface.IItem;
+
 import java.lang.reflect.Field;
 
 /**
@@ -7,19 +8,18 @@ import java.lang.reflect.Field;
  * Date: 13.9.23
  * Time: 17.36
  */
-public class DbItem implements Item  {
-
+public class Item implements IItem {
     /**
      * Database table name
      */
-    private String _table;
+    private String table;
 
     /**
-     * DbItem constructor
+     * Item constructor
      * @param name database table name
      */
-    public DbItem(String name) {
-        this._table = name;
+    public Item(String name) {
+        this.table = name;
     }
 
     /**
@@ -27,7 +27,7 @@ public class DbItem implements Item  {
      * @param name database table name
      */
     public void setTable(String name) {
-        this._table = name;
+        this.table = name;
     }
 
     /**
@@ -59,7 +59,7 @@ public class DbItem implements Item  {
      * @return row id
      */
     public int saveRow(String[] data) {
-        return this.saveRow(data, this._table);
+        return this.saveRow(data, this.table);
     }
 
     /**

@@ -5,11 +5,7 @@ package Items.Interface;
  * Date: 13.9.23
  * Time: 17.25
  */
-public interface Item {
-
-    String url      = "jdbc:postgresql://localhost/library";
-    String user     = "root";
-    String password = "labas";
+public interface IItem {
 
     /**
      * Updates row with given data
