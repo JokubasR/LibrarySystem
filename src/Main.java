@@ -1,6 +1,7 @@
 import Controllers.*;
 import Models.Resources.*;
 import Models.Resources.User;
+import Library.Db.*;
 
 import java.io.Console;
 
@@ -16,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
         Console console = System.console();
-
+                    Library.Db.Manager.fetchAll("test");
         /*
             Controllers initialization
          */

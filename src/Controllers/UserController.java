@@ -13,13 +13,13 @@ public class UserController{
     /**
      * User model object
      */
-    protected Models.UserModel _userModel = null;
+    protected Models.UserModel userModel = null;
 
     /**
      * Intializes models
      */
     public UserController() {
-        this._userModel = new Models.UserModel();
+        this.userModel = new Models.UserModel();
     }
 
     /**
@@ -31,7 +31,7 @@ public class UserController{
      * @return userId
      */
     public int register(String firstname, String lastname, String password, Role role) {
-        int userId = this._userModel.save(firstname, lastname, password, role);
+        int userId = this.userModel.save(firstname, lastname, password, role);
 
         return userId;
     }
@@ -44,13 +44,13 @@ public class UserController{
      * @return userId
      */
     public int register(String firstname, String lastname, Role role) {
-        String password = this._userModel.generatePassword();
-        int userId = this._userModel.save(firstname, lastname, password, role);
+        String password = this.userModel.generatePassword();
+        int userId = this.userModel.save(firstname, lastname, password, role);
 
         return userId;
     }
 
     public Models.Resources.User getUser() {
-        return this._userModel.getUser();
+        return this.userModel.getUser();
     }
 }

@@ -7,6 +7,10 @@ package Items.Interface;
  */
 public interface Item {
 
+    String url      = "jdbc:postgresql://localhost/library";
+    String user     = "root";
+    String password = "labas";
+
     /**
      * Updates row with given data
      * @param data  data array

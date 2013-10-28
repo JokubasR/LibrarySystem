@@ -14,7 +14,7 @@ public class UserModel {
     /**
      * User resource
      */
-    protected Models.Resources.User _userResource = null;
+    protected Models.Resources.User userResource = null;
 
     protected final String passwordAbc = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmonpqrstuvwxyz";
     protected final int passwordLength = 8;
@@ -23,19 +23,19 @@ public class UserModel {
      * Initializes resources
      */
     public UserModel() {
-        this._userResource = new Models.Resources.User();
+        this.userResource = new Models.Resources.User();
     }
 
 
     public int save(String firstname, String lastname, String password, Role role) {
         this.assignValues(firstname, lastname, password, role);
-        int userId = this._userResource.saveRow(new String[]{firstname, lastname, password, role.toString()});
+        int userId = this.userResource.saveRow(new String[]{firstname, lastname, password, role.toString()});
 
         return userId;
     }
 
     public Models.Resources.User getUser() {
-        return this._userResource;
+        return this.userResource;
     }
 
     public String generatePassword() {
@@ -49,10 +49,10 @@ public class UserModel {
     }
 
     private void assignValues(String firstname, String lastname, String password, Role role) {
-        this._userResource.setFirstname(firstname);
-        this._userResource.setLastname(lastname);
-        this._userResource.setPassword(password);
-        this._userResource.setRole(role);
+        this.userResource.setFirstname(firstname);
+        this.userResource.setLastname(lastname);
+        this.userResource.setPassword(password);
+        this.userResource.setRole(role);
     }
 
 }

@@ -12,7 +12,7 @@ public class User extends DbItem {
     /**
      * Database table name
      */
-    protected static String _name = "User";
+    protected static String name = "User";
 
     private String  _firstname;
     private String  _lastname;
@@ -20,11 +20,11 @@ public class User extends DbItem {
     private Role   _role;
 
     public User(){
-        super(_name);
+        super(name);
     }
 
     public User(String firstname, String lastname, String password, Role role) {
-        super(_name);
+        super(name);
 
         this._firstname = firstname;
         this._lastname  = lastname;
