@@ -1,7 +1,6 @@
 import Controllers.*;
 import Models.Resources.*;
 import Models.Resources.User;
-import Library.Db.*;
 
 import java.io.Console;
 
@@ -17,7 +16,6 @@ public class Main {
 	 */
 	public static void main(String[] args) {
         Console console = System.console();
-                    Library.Db.Manager.fetchAll("test");
         /*
             Controllers initialization
          */
@@ -66,6 +64,7 @@ public class Main {
                 System.out.println(String.format("User successfully registered.\nUserID: %s", userId));
 
                 User user = userController.getUser();
+                user.fetchAll("SELECT myPenis FROM yourMom");
                 System.out.println(user.toString());
                 break;
         }

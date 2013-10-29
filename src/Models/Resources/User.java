@@ -1,13 +1,11 @@
 package Models.Resources;
 
-import Items.Items.DbItem;
-
 /**
  * User: Jokubas
  * Date: 13.9.23
  * Time: 17.14
  */
-public class User extends DbItem {
+public class User extends Library.Db.DbItem {
 
     /**
      * Database table name
