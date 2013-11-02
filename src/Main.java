@@ -44,7 +44,7 @@ public class Main {
 
         switch (option) {
             case '1':
-               /* System.out.println("Firstname: ");
+                System.out.println("Firstname: ");
                 String userFirstname = console.readLine();
                 System.out.println("Lasttname: ");
                 String userLastname = console.readLine();
@@ -66,7 +66,6 @@ public class Main {
                 }
 
                 System.out.println(String.format("User successfully registered.\nUserID: %s", userId));
-*/
                 User user = userController.getUser();
                 //user.fetchAll("SELECT VERSION()");
                 System.out.println(user.toString());

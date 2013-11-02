@@ -31,8 +31,16 @@ public class Item implements IItem {
     }
 
     /**
+     * Get database table name
+     * @return
+     */
+    public String getTable() {
+        return table;
+    }
+
+    /**
      * Updates given data to database
-     * @param data  associative array. Where index defines collumn name.
+     * @param data  associative array. Where index defines column name.
      * @param table database table name
      * @param rowId if given, then this row will be updated
      * @return row id
@@ -45,7 +53,7 @@ public class Item implements IItem {
 
     /**
      * Inserts given data to database
-     * @param data  associative array. Where index defines collumn name.
+     * @param data  associative array. Where index defines column name.
      * @param table database table name
      * @return row id
      */
@@ -55,24 +63,11 @@ public class Item implements IItem {
 
     /**
      * Inserts given data to database
-     * @param data  associative array. Where index defines collumn name.
+     * @param data  associative array. Where index defines column name.
      * @return row id
      */
     public int saveRow(String[] data) {
         return this.saveRow(data, this.table);
-    }
-
-    /**
-     * Probably I ain't gonna use it
-     */
-    public void toArray() {
-        Field[] fields = this.getClass().getDeclaredFields();
-
-        String[] data;
-
-        for (Field field : fields) {
-
-        }
     }
 
 }

@@ -58,9 +58,9 @@ public class Manager extends Item {
 
     /**
      * Gets postgres connection
-     * @return Connection postgresql connection
+     * @return Connection postgres connection
      */
-    public Connection getConnection() {
+    private Connection getConnection() {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, password) ;
@@ -77,10 +77,20 @@ public class Manager extends Item {
         return connection;
     }
 
-    public ResultSet fetchAll(String query) {
-        if (this instanceof IItem) {
-            connection = getConnection();
-            if  (null != connection) {
+    private ResultSet executeQuery(String query) {
+        connection = getConnection();
+
+        if (null != connection) {
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+            }
+            catch (SQLException exception) {
+                Logger logger = Logger.getLogger(Manager.class.getName());
+                logger.log(Level.SEVERE, exception.getMessage(), exception);
+                return null ;
+            }
+            finally {
                 try {
                     if (connection != null) {
                         connection.close();
@@ -89,17 +99,29 @@ public class Manager extends Item {
                     if (statement != null) {
                         statement.close();
                     }
-
-                    if (resultSet != null) {
-                        return resultSet;
-                    }
                 }
                 catch (SQLException exception) {
                     Logger lgr = Logger.getLogger(Manager.class.getName());
                     lgr.log(Level.WARNING, exception.getMessage(), exception);
                 }
+                finally {
+                    if (resultSet != null) {
+                        return resultSet;
+                    }
+                }
             }
         }
+
         return null;
+    }
+
+    protected final ResultSet fetchAll(String query) {
+        return executeQuery(query);
+    }
+
+    protected final ResultSet fetchRow(String query) {
+        ResultSet result = executeQuery(query);
+
+        return result;
     }
 }
