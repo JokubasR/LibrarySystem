@@ -2,6 +2,7 @@ package Models;
 import Models.Resources.*;
 
 import java.util.Random;
+import java.util.*;
 
 /**
  * User: Jokubas
@@ -23,36 +24,43 @@ public class UserModel {
      * Initializes resources
      */
     public UserModel() {
-        this.userResource = new Models.Resources.User();
+        userResource = new Models.Resources.User();
     }
 
 
     public int save(String firstname, String lastname, String password, Role role) {
-        this.assignValues(firstname, lastname, password, role);
-        int userId = this.userResource.saveRow(new String[]{firstname, lastname, password, role.toString()});
+        assignValues(firstname, lastname, password, role);
+
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        data.put("firstname", firstname);
+        data.put("lastname", lastname);
+        data.put("password", password);
+        data.put("userRole", role);
+
+        int userId = userResource.saveRow(data);
 
         return userId;
     }
 
     public Models.Resources.User getUser() {
-        return this.userResource;
+        return userResource;
     }
 
     public String generatePassword() {
-        Random rnd = new Random();
+        Random random = new Random();
 
-        StringBuilder sb = new StringBuilder(this.passwordLength);
-        for( int i = 0; i < this.passwordLength; i++ )
-            sb.append(this.passwordAbc.charAt(rnd.nextInt(this.passwordAbc.length())));
+        StringBuilder stringBuilder = new StringBuilder(passwordLength);
+        for( int i = 0; i < passwordLength; i++ )
+            stringBuilder.append(passwordAbc.charAt(random.nextInt(passwordAbc.length())));
 
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     private void assignValues(String firstname, String lastname, String password, Role role) {
-        this.userResource.setFirstname(firstname);
-        this.userResource.setLastname(lastname);
-        this.userResource.setPassword(password);
-        this.userResource.setRole(role);
+       userResource.setFirstname(firstname);
+       userResource.setLastname(lastname);
+       userResource.setPassword(password);
+       userResource.setRole(role);
     }
 
 }

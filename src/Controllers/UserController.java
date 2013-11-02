@@ -19,7 +19,7 @@ public class UserController{
      * Intializes models
      */
     public UserController() {
-        this.userModel = new Models.UserModel();
+        userModel = new Models.UserModel();
     }
 
     /**
@@ -31,7 +31,7 @@ public class UserController{
      * @return userId
      */
     public int register(String firstname, String lastname, String password, Role role) {
-        int userId = this.userModel.save(firstname, lastname, password, role);
+        int userId = userModel.save(firstname, lastname, password, role);
 
         return userId;
     }
@@ -44,13 +44,13 @@ public class UserController{
      * @return userId
      */
     public int register(String firstname, String lastname, Role role) {
-        String password = this.userModel.generatePassword();
-        int userId = this.userModel.save(firstname, lastname, password, role);
+        String password = userModel.generatePassword();
+        int userId = userModel.save(firstname, lastname, password, role);
 
         return userId;
     }
 
     public Models.Resources.User getUser() {
-        return this.userModel.getUser();
+        return userModel.getUser();
     }
 }

@@ -1,5 +1,7 @@
 package Items.Interface;
 
+import java.util.*;
+
 /**
  * User: Jokubas
  * Date: 13.9.23
@@ -14,7 +16,7 @@ public interface IItem {
      * @param rowId row id witch will be updated
      * @return row id
      */
-    public int saveRow(String[] data, String table, int rowId);
+    public int saveRow(HashMap<String, Object> data, String table, int rowId);
 
     /**
      * Inserts row with given data
@@ -22,5 +24,5 @@ public interface IItem {
      * @param table table name
      * @return row id
      */
-    public int saveRow(String[] data, String table);
+    public int saveRow(HashMap<String, Object> data, String table);
 }

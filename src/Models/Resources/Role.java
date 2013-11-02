@@ -11,5 +11,19 @@ package Models.Resources;
  */
 public enum Role {
         USER,
-        WORKER
+        WORKER;
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case USER:
+                return "User";
+            case WORKER:
+                return "Worker";
+
+            default:
+                return "User";
+        }
+    }
+
 }

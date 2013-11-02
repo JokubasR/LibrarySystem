@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     id serial PRIMARY KEY, 
     firstname VARCHAR(80),
     lastname VARCHAR(80),
+    password character varying(80),
     userRole ROLES
 );
 

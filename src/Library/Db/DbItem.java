@@ -1,6 +1,8 @@
 package Library.Db;
 
-public class DbItem extends Manager {
+import Items.Items.Item;
+
+public class DbItem extends Item {
     public DbItem(String name) {
         super(name);
     }

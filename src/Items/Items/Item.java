@@ -1,54 +1,38 @@
 package Items.Items;
+
 import Items.Interface.IItem;
+import Library.Db.Manager;
 
 import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * User: Jokubas
  * Date: 13.9.23
  * Time: 17.36
  */
-public class Item implements IItem {
-    /**
-     * Database table name
-     */
-    private String table;
-
+public class Item extends Manager implements IItem {
     /**
      * Item constructor
      * @param name database table name
      */
     public Item(String name) {
-        this.table = name;
+        super(name);
     }
 
-    /**
-     * Sets database table name
-     * @param name database table name
-     */
-    public void setTable(String name) {
-        this.table = name;
-    }
-
-    /**
-     * Get database table name
-     * @return
-     */
-    public String getTable() {
-        return table;
-    }
-
-    /**
+     /**
      * Updates given data to database
      * @param data  associative array. Where index defines column name.
      * @param table database table name
      * @param rowId if given, then this row will be updated
      * @return row id
      */
-    public int saveRow(String[] data, String table, int rowId) {
-        // TODO Implement saving to row method here
+    public int saveRow(HashMap<String, Object> data, String table, int rowId) {
+        if (null != table) {
+            setTable(table);
+        }
 
-        return 0;
+        return insert(data);
     }
 
     /**
@@ -57,7 +41,7 @@ public class Item implements IItem {
      * @param table database table name
      * @return row id
      */
-    public int saveRow(String[] data, String table) {
+    public int saveRow(HashMap<String, Object> data, String table) {
         return this.saveRow(data, table, 0);
     }
 
@@ -66,8 +50,8 @@ public class Item implements IItem {
      * @param data  associative array. Where index defines column name.
      * @return row id
      */
-    public int saveRow(String[] data) {
-        return this.saveRow(data, this.table);
+    public int saveRow(HashMap<String, Object> data) {
+        return this.saveRow(data, this.getTable());
     }
 
 }

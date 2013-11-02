@@ -3,10 +3,10 @@ import Models.Resources.*;
 import Models.Resources.User;
 
 import java.io.Console;
+import java.util.*;
 
 /*
-java -cp "C:\Users\jokub_000\proje
-cts\LibrarySystem\drivers\postgresql-9.2-1003.jdbc4.jar;." Main
+java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.jdbc4.jar;." Main
  */
 /**
  * @author Jokubas
@@ -67,7 +67,7 @@ public class Main {
 
                 System.out.println(String.format("User successfully registered.\nUserID: %s", userId));
                 User user = userController.getUser();
-                //user.fetchAll("SELECT VERSION()");
+
                 System.out.println(user.toString());
                 break;
         }

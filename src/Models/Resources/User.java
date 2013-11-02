@@ -10,7 +10,7 @@ public class User extends Library.Db.DbItem {
     /**
      * Database table name
      */
-    protected static String name = "User";
+    protected static String name = "users";
 
     private String  _firstname;
     private String  _lastname;
