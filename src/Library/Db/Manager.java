@@ -11,13 +11,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import Items.Interface.IItem;
 import Items.Items.Item;
 
 
 public class Manager extends Item {
 
-    private String url          = "jdbc:postgresql://localhost:5432/library";
+    private String url          = "jdbc:postgresql://localhost/library";
     private String user         = "root";
     private String password     = "labas";
 
@@ -28,21 +31,56 @@ public class Manager extends Item {
 
     public Manager(String name) {
         super(name);
+
+        if (false == loadDriver()) {
+            System.exit(1);
+        }
+    }
+
+    /**
+     * Loads org.postgresql.Driver
+     * @return TURE if driver was loaded succesfully
+     */
+    private boolean loadDriver()
+    {
+        try {
+            Class.forName("org.postgresql.Driver");
+        }
+        catch (ClassNotFoundException exception) {
+            System.out.println("Couldn't find driver class!");
+            exception.printStackTrace();
+            return false;
+        }
+        finally {
+            return true;
+        }
+    }
+
+    /**
+     * Gets postgres connection
+     * @return Connection postgresql connection
+     */
+    public Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(url, user, password) ;
+        }
+        catch (SQLException exception) {
+            Logger logger = Logger.getLogger(Manager.class.getName());
+            logger.log(Level.SEVERE, exception.getMessage(), exception);
+            return null ;
+        }
+        finally {
+            System.out.println("Successfully connected to Postgres Database");
+        }
+
+        return connection;
     }
 
     public ResultSet fetchAll(String query) {
         if (this instanceof IItem) {
-            try {
-                connection = DriverManager.getConnection(url, user, password);
-
-                statement = connection.createStatement();
-
-                resultSet = statement.executeQuery(query);
-            }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-            finally {
+            connection = getConnection();
+            if  (null != connection) {
                 try {
                     if (connection != null) {
                         connection.close();
@@ -57,7 +95,8 @@ public class Manager extends Item {
                     }
                 }
                 catch (SQLException exception) {
-                    exception.printStackTrace();
+                    Logger lgr = Logger.getLogger(Manager.class.getName());
+                    lgr.log(Level.WARNING, exception.getMessage(), exception);
                 }
             }
         }

@@ -4,6 +4,10 @@ import Models.Resources.User;
 
 import java.io.Console;
 
+/*
+java -cp "C:\Users\jokub_000\proje
+cts\LibrarySystem\drivers\postgresql-9.2-1003.jdbc4.jar;." Main
+ */
 /**
  * @author Jokubas
  * @since 2013.09.09
@@ -40,7 +44,7 @@ public class Main {
 
         switch (option) {
             case '1':
-                System.out.println("Firstname: ");
+               /* System.out.println("Firstname: ");
                 String userFirstname = console.readLine();
                 System.out.println("Lasttname: ");
                 String userLastname = console.readLine();
@@ -62,9 +66,9 @@ public class Main {
                 }
 
                 System.out.println(String.format("User successfully registered.\nUserID: %s", userId));
-
+*/
                 User user = userController.getUser();
-                user.fetchAll("SELECT myPenis FROM yourMom");
+                //user.fetchAll("SELECT VERSION()");
                 System.out.println(user.toString());
                 break;
         }
