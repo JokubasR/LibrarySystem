@@ -27,11 +27,12 @@ public class UserController{
      * @param firstname  user firstname
      * @param lastname user lastname
      * @param password user password
+     * @param username user username
      * @param role user Role. User, Worker
      * @return userId
      */
-    public int register(String firstname, String lastname, String password, Role role) {
-        int userId = userModel.save(firstname, lastname, password, role);
+    public int register(String firstname, String lastname, String password, String username, Role role) {
+        int userId = userModel.save(firstname, lastname, password, username, role);
 
         return userId;
     }
@@ -40,14 +41,19 @@ public class UserController{
      * Registers a new user. Password will be generated.
      * @param firstname user firstname
      * @param lastname user lastname
+     * @param username user username
      * @param role user Role. User, Worker
      * @return userId
      */
-    public int register(String firstname, String lastname, Role role) {
+    public int register(String firstname, String lastname, String username, Role role) {
         String password = userModel.generatePassword();
-        int userId = userModel.save(firstname, lastname, password, role);
+        int userId = userModel.save(firstname, lastname, password, username, role);
 
         return userId;
+    }
+
+    public boolean login(String username, String password) {
+        return userModel.authenticate(username, password);
     }
 
     public Models.Resources.User getUser() {

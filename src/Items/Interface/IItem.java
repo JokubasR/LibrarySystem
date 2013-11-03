@@ -25,4 +25,19 @@ public interface IItem {
      * @return row id
      */
     public int saveRow(HashMap<String, Object> data, String table);
+
+    /**
+     * Fetches the row with given filter
+     * @param filter
+     * @param table
+     * @return fetched row
+     */
+    public HashMap<String, Object> fetchRow(HashMap<String, Object> filter, String table);
+
+    /**
+     * Fetches the row with given filter
+     * @param filter
+     * @return
+     */
+    public HashMap<String, Object> fetchRow(HashMap<String, Object> filter);
 }

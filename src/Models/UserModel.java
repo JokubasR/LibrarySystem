@@ -28,13 +28,14 @@ public class UserModel {
     }
 
 
-    public int save(String firstname, String lastname, String password, Role role) {
-        assignValues(firstname, lastname, password, role);
+    public int save(String firstname, String lastname, String password, String username, Role role) {
+        assignValues(firstname, lastname, password, username, role);
 
         HashMap<String, Object> data = new HashMap<String, Object>();
         data.put("firstname", firstname);
         data.put("lastname", lastname);
         data.put("password", password);
+        data.put("username", username);
         data.put("userRole", role);
 
         int userId = userResource.saveRow(data);
@@ -42,7 +43,7 @@ public class UserModel {
         return userId;
     }
 
-    public Models.Resources.User getUser() {
+    public User getUser() {
         return userResource;
     }
 
@@ -56,10 +57,20 @@ public class UserModel {
         return stringBuilder.toString();
     }
 
-    private void assignValues(String firstname, String lastname, String password, Role role) {
+    public boolean authenticate(String username, String password) {
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        data.put("password", password);
+        data.put("username", username);
+
+        HashMap<String, Object> user = userResource.fetchRow(data);
+        return true;
+    }
+
+    private void assignValues(String firstname, String lastname, String password, String username, Role role) {
        userResource.setFirstname(firstname);
        userResource.setLastname(lastname);
        userResource.setPassword(password);
+       userResource.setUsername(username);
        userResource.setRole(role);
     }
 

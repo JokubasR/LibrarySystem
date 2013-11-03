@@ -12,62 +12,75 @@ public class User extends Library.Db.DbItem {
      */
     protected static String name = "users";
 
-    private String  _firstname;
-    private String  _lastname;
-    private String  _password;
-    private Role   _role;
+    /**
+     * Fields
+     */
+    private String  firstname;
+    private String  lastname;
+    private String  password;
+    private String  username;
+    private Role    role;
 
     public User(){
         super(name);
     }
 
-    public User(String firstname, String lastname, String password, Role role) {
+    public User(String _firstname, String _lastname, String _password, String _username, Role _role) {
         super(name);
 
-        this._firstname = firstname;
-        this._lastname  = lastname;
-        this._password  = password;
-        this._role      = role;
+        firstname = _firstname;
+        lastname  = _lastname;
+        password  = _password;
+        username  = _username;
+        role      = _role;
     }
 
-    public User(String firstname, String lastname, String password) {
-        this(firstname, lastname, password, Role.USER);
+    public User(String _firstname, String _lastname, String _password, String _username) {
+        this(_firstname, _lastname, _password, _username, Role.USER);
     }
 
     public String getFirstname() {
-        return this._firstname;
+        return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this._firstname = firstname;
+    public void setFirstname(String _firstname) {
+        firstname = _firstname;
     }
 
     public String getLastname() {
-        return this._lastname;
+        return lastname;
     }
 
-    public void setLastname(String lastname) {
-        this._lastname = lastname;
+    public void setLastname(String _lastname) {
+        lastname = _lastname;
     }
 
-    public void setPassword(String password) {
-        this._password = password;
+    public void setPassword(String _password) {
+        password = _password;
     }
 
-    public Boolean validatePassword(String password) {
-        return password.equals(this._password);
+    public Boolean validatePassword(String _password) {
+        return _password.equals(password);
     }
 
-    public void setRole(Role role) {
-        this._role = role;
+    public void setUsername(String _username) {
+        username = _username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setRole(Role _role) {
+        role = _role;
     }
 
     public Role getRole() {
-        return this._role;
+        return role;
     }
 
     public String toString()
     {
-        return String.format("Firstname: %s\nLastname: %s\nPassword: %s\nRole: %s\n", this._firstname, this._lastname, this._password, this._role);
+        return String.format("Firstname: %s\nLastname: %s\nUsername: %s\nPassword: %s\nRole: %s\n", firstname, lastname, username, password, role);
     }
 }

@@ -94,15 +94,38 @@ public class Manager {
         return connection;
     }
 
-    private ResultSet fetch(String query) {
+    private ResultSet fetch(HashMap<String, Object> filter) {
         Connection connection = getConnection();
         Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         if (null != connection) {
             try {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("SELECT * FROM " + getTable() + " WHERE ");
+                stringBuilder.append(filter.remove(0));
+
+                for (Map.Entry<String, Object> entry : filter.entrySet()) {
+                    stringBuilder.append(" AND ");
+                    stringBuilder.append(String.format("%s = ?", entry.getKey()));
+                }
+
+                preparedStatement = connection.prepareStatement(stringBuilder.toString());
+
+                int index = 0;
+                for (Map.Entry<String, Object> entry : filter.entrySet()) {
+                    if (entry.getValue() instanceof String) {
+                        preparedStatement.setString(++index, (String) entry.getValue());
+                    } else if(entry.getValue() instanceof Integer) {
+                        preparedStatement.setInt(++index, (Integer)entry.getValue());
+                    } else if(entry.getValue() instanceof Role) {
+                        preparedStatement.setString(++index, (String)entry.getValue().toString());
+                    }
+                }
+
                 statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
+                resultSet = statement.executeQuery(preparedStatement.toString());
             }
             catch (SQLException exception) {
                 Logger logger = Logger.getLogger(Manager.class.getName());
@@ -117,6 +140,10 @@ public class Manager {
 
                     if (statement != null) {
                         statement.close();
+                    }
+
+                    if (preparedStatement != null) {
+                        preparedStatement.close();
                     }
                 }
                 catch (SQLException exception) {
@@ -209,14 +236,14 @@ public class Manager {
         return 1;
     }
 
-    protected final ResultSet fetchAll(String query) {
+    /*protected final ResultSet fetchAll(String query) {
         return fetch(query);
     }
+*/
+    protected HashMap<String, Object> fetchRow(HashMap<String, Object> filter) {
+        ResultSet result = fetch(filter);
 
-    protected final ResultSet fetchRow(String query) {
-        ResultSet result = fetch(query);
-
-        return result;
+        return new HashMap<String, Object>();
     }
 
     protected final int insert(HashMap<String, Object> data) {

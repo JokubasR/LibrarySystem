@@ -54,4 +54,13 @@ public class Item extends Manager implements IItem {
         return this.saveRow(data, this.getTable());
     }
 
+    public HashMap<String, Object> fetchRow(HashMap<String, Object> filter, String table) {
+        setTable(table);
+
+        return fetchRow(filter);
+    }
+
+    public HashMap<String, Object> fetchRow(HashMap<String, Object> filter) {
+        return fetchRow(filter, getTable());
+    }
 }

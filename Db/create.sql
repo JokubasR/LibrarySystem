@@ -1,12 +1,13 @@
 DROP TABLE IF EXISTS users, book, bookLog, genres, bookGenres;
 
-CREATE TYPE ROLES AS ENUM('USER', 'WORKER');
+CREATE TYPE ROLES AS ENUM('User', 'Worker');
 
 CREATE TABLE IF NOT EXISTS users (
     id serial PRIMARY KEY, 
     firstname VARCHAR(80),
     lastname VARCHAR(80),
-    password character varying(80),
+    username VARCHAR(80),
+    password VARCHAR(80),
     userRole ROLES
 );
 
