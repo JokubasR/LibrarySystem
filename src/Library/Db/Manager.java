@@ -46,6 +46,10 @@ public class Manager {
         return table;
     }
 
+    /**
+     * Loads driver
+     * @param name table name
+     */
     public Manager(String name) {
         if (false == loadDriver()) {
             System.exit(1);
@@ -53,6 +57,20 @@ public class Manager {
 
         setTable(name);
     }
+
+    /**
+     * Default constructor
+     */
+    public Manager() {
+        if (false == loadDriver()) {
+            System.exit(1);
+        }
+
+        if (getTable() == null) {
+            System.exit(1);
+        }
+    }
+
 
     /**
      * Loads org.postgresql.Driver
@@ -241,7 +259,7 @@ public class Manager {
     }
 */
     protected HashMap<String, Object> fetchRow(HashMap<String, Object> filter) {
-        ResultSet result = fetch(filter);
+        //ResultSet result = fetch(filter);
 
         return new HashMap<String, Object>();
     }

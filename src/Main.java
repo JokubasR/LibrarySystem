@@ -6,6 +6,7 @@ import java.io.Console;
 import java.util.*;
 
 /*
+javac -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.jdbc4.jar;." Main.java
 java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.jdbc4.jar;." Main
  */
 /**
@@ -68,10 +69,10 @@ public class Main {
                     userId = userController.register(userFirstname, userLastname, userPassword, userUsername, role);
                 }
 
-                System.out.println(String.format("User successfully registered.\nUserID: %s", userId));
+                System.out.println(String.format("\nUser successfully registered.\nUserID: %s", userId));
                 User user = userController.getUser();
 
-                System.out.println(user.toString());
+                System.out.println("\n" + user.toString());
                 break;
             case '2':
                 String loginUsername;
@@ -84,7 +85,7 @@ public class Main {
                     loginPassword = console.readLine();
                 } while (userController.login(loginUsername, loginPassword) == false);
 
-                System.out.println("Authentication successful");
+                System.out.println("\nAuthentication successful");
 
 
 

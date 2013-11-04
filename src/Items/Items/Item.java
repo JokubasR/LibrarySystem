@@ -1,5 +1,6 @@
 package Items.Items;
 
+import Items.Abstract.ItemAbstract;
 import Items.Interface.IItem;
 import Library.Db.Manager;
 
@@ -11,7 +12,7 @@ import java.util.*;
  * Date: 13.9.23
  * Time: 17.36
  */
-public class Item extends Manager implements IItem {
+public class Item extends ItemAbstract implements IItem {
     /**
      * Item constructor
      * @param name database table name
@@ -54,13 +55,23 @@ public class Item extends Manager implements IItem {
         return this.saveRow(data, this.getTable());
     }
 
+    /**
+     * Fetches the row from database
+     * @param filter key is column name, value is value
+     * @param table database table name
+     * @return HashMap<String, Object>
+     */
+    @Override
     public HashMap<String, Object> fetchRow(HashMap<String, Object> filter, String table) {
-        setTable(table);
-
-        return fetchRow(filter);
+        return super.fetchRow(filter, table);
     }
-
+    /**
+     * Fetches the row from database
+     * @param filter key is column name, value is value
+     * @return HashMap<String, Object>
+     */
+    @Override
     public HashMap<String, Object> fetchRow(HashMap<String, Object> filter) {
-        return fetchRow(filter, getTable());
+        return this.fetchRow(filter, getTable());
     }
 }
