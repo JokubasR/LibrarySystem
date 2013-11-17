@@ -12,7 +12,7 @@ import java.util.*;
  * Date: 13.9.23
  * Time: 17.36
  */
-public class Item extends ItemAbstract implements IItem {
+public class Item extends ItemAbstract {
     /**
      * Item constructor
      * @param name database table name

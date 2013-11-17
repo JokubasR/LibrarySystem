@@ -257,7 +257,7 @@ public class Manager {
     /*protected final ResultSet fetchAll(String query) {
         return fetch(query);
     }
-*/
+    */
     protected HashMap<String, Object> fetchRow(HashMap<String, Object> filter) {
         //ResultSet result = fetch(filter);
 
