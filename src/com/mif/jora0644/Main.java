@@ -82,10 +82,12 @@ public class Main{
                     System.out.println("\n" + user.toString());
                 }
                 catch (UserException userException) {
-                    System.out.println(userException + ". Current password length: " + userException.getPasswordLength() + ". Required password length: " + Config.minPasswordLength);
+                    System.out.println(userException +
+                            ". Current password length: " + userException.getPasswordLength() +
+                            ". Required password length: " + Config.minPasswordLength);
                 }
-                catch (Throwable up) {
-                    throw up;
+                finally {
+                    System.out.println("Finnaly");
                 }
 
                 break;
@@ -101,8 +103,6 @@ public class Main{
                 } while (userController.login(loginUsername, loginPassword) == false);
 
                 System.out.println("\nAuthentication successful");
-
-
 
                 break;
         }
