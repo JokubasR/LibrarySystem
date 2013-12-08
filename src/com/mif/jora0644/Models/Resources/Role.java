@@ -9,7 +9,7 @@ package Models.Resources;
 /**
  * Enum defining user roles
  */
-public enum Role {
+public enum Role{
         USER,
         WORKER;
 
@@ -25,5 +25,4 @@ public enum Role {
                 return "User";
         }
     }
-
 }

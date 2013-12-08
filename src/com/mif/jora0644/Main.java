@@ -1,9 +1,9 @@
-package com.mif.jora0644;
+//package com.mif.jora0644;
 
 import Controllers.*;
 import Models.Resources.*;
 import Models.Resources.User;
-import com.mif.jora0644.*;
+import Library.*;
 
 import java.io.Console;
 import java.util.*;
@@ -17,13 +17,14 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
  * @since 2013.09.09
  * Task: Library: staff, book catalogue, customers. *
  */
-public class Main{
+ public class Main{
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
         Console console = System.console();
+//        Config config = new Config();
         /*
             Controllers initialization
          */
@@ -58,8 +59,8 @@ public class Main{
                     String userUsername = console.readLine();
                     System.out.println("Password: ");
                     String userPassword = console.readLine();
-                    if (userPassword.length() < Config.minPasswordLength && userPassword.length() != 0) {
-                          throw new UserException(userPassword.length());
+                    if (userPassword.length() < 5 && userPassword.length() != 0) {
+                         throw new Library.UserException(userPassword.length());
                     }
                     System.out.println("Choose your role:\n1. User\n2. Worker\n");
                     String userRole = console.readLine();
@@ -81,10 +82,10 @@ public class Main{
 
                     System.out.println("\n" + user.toString());
                 }
-                catch (UserException userException) {
+                catch (Library.UserException userException) {
                     System.out.println(userException +
                             ". Current password length: " + userException.getPasswordLength() +
-                            ". Required password length: " + Config.minPasswordLength);
+                            ". Required password length: " + 5);
                 }
                 finally {
                     System.out.println("Finnaly");
@@ -95,12 +96,15 @@ public class Main{
                 String loginUsername;
                 String loginPassword;
 
+                Object user;
                 do {
                     System.out.println("Enter your username: ");
                     loginUsername = console.readLine();
                     System.out.println("Enter your password: ");
                     loginPassword = console.readLine();
-                } while (userController.login(loginUsername, loginPassword) == false);
+
+//                    user = userController.login(loginUsername, loginPassword);
+                } while (!userController.login(loginUsername, loginPassword));
 
                 System.out.println("\nAuthentication successful");
 

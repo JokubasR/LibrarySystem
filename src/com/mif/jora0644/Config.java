@@ -6,5 +6,9 @@ package com.mif.jora0644;
  * Config class
  */
 public class Config {
-    public static int minPasswordLength = 5;
+    protected int minPasswordLength = 5;
+
+    public int getMinPasswordLength() {
+        return this.minPasswordLength;
+    }
 }

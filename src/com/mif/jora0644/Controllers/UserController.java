@@ -54,9 +54,15 @@ public class UserController{
 
     public boolean login(String username, String password) {
         return userModel.authenticate(username, password);
+//        Object user = userModel.authenticate(username, password);
+//        if (user instanceof Models.Resources.User) {
+//            return ((Models.Resources.User) user);
+//        } else {
+//            return false;
+//        }
     }
 
     public Models.Resources.User getUser() {
-        return userModel.getUser();
+        return (Models.Resources.User)userModel.getUser();
     }
 }

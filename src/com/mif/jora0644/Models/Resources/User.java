@@ -5,7 +5,7 @@ package Models.Resources;
  * Date: 13.9.23
  * Time: 17.14
  */
-public class User extends Library.Db.DbItem {
+public class User extends Library.Db.DbItem implements Cloneable{
 
     /**
      * Database table name
@@ -19,13 +19,13 @@ public class User extends Library.Db.DbItem {
     private String  lastname;
     private String  password;
     private String  username;
-    private Role    role;
+    private Models.Resources.Role role;
 
     public User(){
         super(name);
     }
 
-    public User(String _firstname, String _lastname, String _password, String _username, Role _role) {
+    public User(String _firstname, String _lastname, String _password, String _username, Models.Resources.Role _role) {
         super(name);
 
         firstname = _firstname;
@@ -36,7 +36,7 @@ public class User extends Library.Db.DbItem {
     }
 
     public User(String _firstname, String _lastname, String _password, String _username) {
-        this(_firstname, _lastname, _password, _username, Role.USER);
+        this(_firstname, _lastname, _password, _username, Models.Resources.Role.USER);
     }
 
     public String getFirstname() {
@@ -71,16 +71,35 @@ public class User extends Library.Db.DbItem {
         return username;
     }
 
-    public void setRole(Role _role) {
+    public void setRole(Models.Resources.Role _role) {
         role = _role;
     }
 
-    public Role getRole() {
+    public Models.Resources.Role getRole() {
         return role;
     }
 
     public String toString()
     {
-        return String.format("Firstname: %s\nLastname: %s\nUsername: %s\nPassword: %s\nRole: %s\n", firstname, lastname, username, password, role);
+        return String.format("Firstname: %s\nLastname: %s\nUsername: %s\nPassword: %s\nRole: %s\n",
+                firstname, lastname, username, password, role);
+    }
+
+    public Object clone()
+            throws CloneNotSupportedException {
+        try {
+            User cloneUser = (User)super.clone();
+
+            cloneUser.firstname     = new String(firstname);
+            cloneUser.lastname      = new String(lastname);
+            cloneUser.password      = new String(password);
+            cloneUser.role          = (Models.Resources.Role)role.clone();
+            cloneUser.username      = new String(username);
+
+            return cloneUser;
+        }
+        catch (CloneNotSupportedException ex) {
+            throw new Error(ex.getMessage());
+        }
     }
 }

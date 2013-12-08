@@ -1,4 +1,4 @@
-package com.mif.jora0644.Library;
+package Library;
 
 public class BaseException  extends Exception{
     public BaseException(){

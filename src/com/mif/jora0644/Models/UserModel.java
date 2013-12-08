@@ -43,8 +43,8 @@ public class UserModel {
         return userId;
     }
 
-    public User getUser() {
-        return userResource;
+    public Object getUser() {
+        return userResource.clone();
     }
 
     public String generatePassword() {
@@ -63,7 +63,11 @@ public class UserModel {
         data.put("username", username);
 
         HashMap<String, Object> user = userResource.fetchRow(data);
-        return true;
+        if (user.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void assignValues(String firstname, String lastname, String password, String username, Role role) {

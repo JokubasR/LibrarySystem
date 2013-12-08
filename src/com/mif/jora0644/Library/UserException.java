@@ -1,4 +1,4 @@
-package com.mif.jora0644.Library;
+package Library;
 
 import java.io.*;
 
@@ -8,10 +8,12 @@ public class UserException extends BaseException {
     public int getPasswordLength() {
         return passwordLength;
     }
+
     /**
      * Constructor with no-args
      */
     public UserException() {
+        super("Exception occurred");
     }
 
     /**
@@ -25,7 +27,7 @@ public class UserException extends BaseException {
     public UserException(String message, int passwordLength) {
         super(message);
 
-        this.passwordLength = length;
+        this.passwordLength = passwordLength;
     }
 
     public UserException(int passwordLength) {
