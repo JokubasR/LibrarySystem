@@ -8,6 +8,7 @@ import Library.*;
 import Models.Resources.*;
 
 public class UserFactory {
+
     public static Library.Db.DbItem createUser() {
         return createUser(Role.DEFAULT);
     }

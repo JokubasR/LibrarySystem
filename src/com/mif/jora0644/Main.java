@@ -55,6 +55,7 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                     String userUsername = console.readLine();
                     System.out.println("Password: ");
                     String userPassword = console.readLine();
+
                     if (userPassword.length() < Config.minPasswordLength && userPassword.length() != 0) {
                          throw new Library.UserException(userPassword.length());
                     }
@@ -85,7 +86,7 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                             ". Required password length: " + Config.minPasswordLength);
                 }
                 finally {
-                    System.out.println("Finnaly");
+                    System.out.println("Finally");
                 }
 
                 break;
