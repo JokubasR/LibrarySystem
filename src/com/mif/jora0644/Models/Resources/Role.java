@@ -11,7 +11,8 @@ package Models.Resources;
  */
 public enum Role{
         USER,
-        WORKER;
+        WORKER,
+        DEFAULT;
 
     @Override
     public String toString() {

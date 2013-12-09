@@ -1,5 +1,6 @@
 package Models;
 import Models.Resources.*;
+import com.mif.jora0644.Factory.UserFactory;
 
 import java.util.Random;
 import java.util.*;
@@ -24,7 +25,7 @@ public class UserModel {
      * Initializes resources
      */
     public UserModel() {
-        userResource = new Models.Resources.User();
+        userResource = (Models.Resources.User) (UserFactory.createUser());
     }
 
 
