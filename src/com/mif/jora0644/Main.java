@@ -1,5 +1,3 @@
-//package com.mif.jora0644;
-
 import Controllers.*;
 import Models.Resources.*;
 import Models.Resources.User;
@@ -24,12 +22,10 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
 	 */
 	public static void main(String[] args) {
         Console console = System.console();
-//        Config config = new Config();
         /*
             Controllers initialization
          */
         Controllers.UserController userController = new Controllers.UserController();
-
 
         /*
             Menu
@@ -59,7 +55,7 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                     String userUsername = console.readLine();
                     System.out.println("Password: ");
                     String userPassword = console.readLine();
-                    if (userPassword.length() < 5 && userPassword.length() != 0) {
+                    if (userPassword.length() < Config.minPasswordLength && userPassword.length() != 0) {
                          throw new Library.UserException(userPassword.length());
                     }
                     System.out.println("Choose your role:\n1. User\n2. Worker\n");
@@ -78,6 +74,7 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                     }
 
                     System.out.println(String.format("\nUser successfully registered.\nUserID: %s", userId));
+
                     User user = (User)(userController.getUser());
 
                     System.out.println("\n" + user.toString());
@@ -85,7 +82,7 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                 catch (Library.UserException userException) {
                     System.out.println(userException +
                             ". Current password length: " + userException.getPasswordLength() +
-                            ". Required password length: " + 5);
+                            ". Required password length: " + Config.minPasswordLength);
                 }
                 finally {
                     System.out.println("Finnaly");
@@ -103,7 +100,6 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                     System.out.println("Enter your password: ");
                     loginPassword = console.readLine();
 
-//                    user = userController.login(loginUsername, loginPassword);
                 } while (!userController.login(loginUsername, loginPassword));
 
                 System.out.println("\nAuthentication successful");
