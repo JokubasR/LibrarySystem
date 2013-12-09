@@ -20,6 +20,7 @@ public class UserFactory {
                 user = new Models.Resources.User();
                 break;
             case Models.Resources.Role.WORKER:
+                // TODO. Good enough for the demo
                 user = new Models.Resources.User();
                 break;
         }
