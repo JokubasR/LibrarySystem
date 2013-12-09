@@ -62,7 +62,7 @@ public class UserController{
 //        }
     }
 
-    public Models.Resources.User getUser() {
-        return (Models.Resources.User)userModel.getUser();
+    public Object getUser() {
+        return userModel.getUser();
     }
 }

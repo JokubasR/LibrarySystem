@@ -85,15 +85,14 @@ public class User extends Library.Db.DbItem implements Cloneable{
                 firstname, lastname, username, password, role);
     }
 
-    public Object clone()
-            throws CloneNotSupportedException {
+    public Object clone() {
         try {
             User cloneUser = (User)super.clone();
 
             cloneUser.firstname     = new String(firstname);
             cloneUser.lastname      = new String(lastname);
             cloneUser.password      = new String(password);
-            cloneUser.role          = (Models.Resources.Role)role.clone();
+            cloneUser.role          = role;
             cloneUser.username      = new String(username);
 
             return cloneUser;

@@ -78,7 +78,7 @@ java -cp "C:\Users\jokub_000\projects\LibrarySystem\drivers\postgresql-9.2-1003.
                     }
 
                     System.out.println(String.format("\nUser successfully registered.\nUserID: %s", userId));
-                    User user = userController.getUser();
+                    User user = (User)(userController.getUser());
 
                     System.out.println("\n" + user.toString());
                 }
